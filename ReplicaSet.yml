@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: ReplicaSet 
+metadata: 
+  name: test 
+  labels: 
+    app: test 
+spec: 
+  replicas: 4 
+  selector: 
+    matchLabels: 
+      app: test1 
+  template: 
+    metadata: 
+      labels: 
+        app: test1 
+    spec: 
+      containers: 
+      - name: app1 
+        image: python:3.6-alpine 
+        command: ['sh', '-c', 'echo cont1 > index.html && python -m http.server 8081'] 
